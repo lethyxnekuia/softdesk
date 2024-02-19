@@ -27,20 +27,20 @@ class IsAuthorPermission(permissions.BasePermission):
 class ProjectPermission(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
-            return is_contributor(self.user, obj.project)
+            return is_contributor(request.user, obj.project)
         return True
 
 
 class ContributorPermission(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
-        return is_contributor(self.user, obj.project)
+        return is_contributor(request.user, obj.project)
 
 
 class IssuePermission(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
-        return is_contributor(self.user, obj.project)
+        return is_contributor(request.user, obj.project)
 
 
 class CommentPermission(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
-        return is_contributor(self.user, obj.issue.project)
+        return is_contributor(request.user, obj.issue.project)
