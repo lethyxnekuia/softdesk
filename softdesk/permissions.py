@@ -27,7 +27,7 @@ class IsAuthorPermission(permissions.BasePermission):
 class ProjectPermission(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
-            return is_contributor(request.user, obj.project)
+            return is_contributor(request.user, obj.id)
         return True
 
 
